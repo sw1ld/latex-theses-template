@@ -1,0 +1,82 @@
+\documentclass[
+    11pt, % Schriftgröße
+    DIV=10,
+    a4paper, % Papierformat
+    oneside, % einseitiges Dokument
+    titlepage, % es wird eine Titelseite verwendet
+    parskip=half, % Abstand zwischen Absätzen (halbe Zeile)
+    headings=normal, % Größe der Überschriften verkleinern
+    listof=totoc, % Verzeichnisse im Inhaltsverzeichnis aufführen
+    bibliography=totoc, % Literaturverzeichnis im Inhaltsverzeichnis aufführen
+    captions=tableheading, % Beschriftung von Tabellen unterhalb ausgeben
+    numbers=noendperiod 	% kein Punkt nach Nummerierung in Überschrift
+]{scrreprt}
+
+\include{config}
+
+\newcommand{\titel}{Titel der Arbeit}
+\newcommand{\art}{Masterarbeit}
+\newcommand{\autor}{Vorname Nachname}
+\newcommand{\studienbereich}{Informatik}
+\newcommand{\universiaet}{XY Universität}
+\newcommand{\matrikelnr}{123456}
+\newcommand{\erstgutachter}{Prof. Dr. Erstbetreuer}
+\newcommand{\zweitgutachter}{Prof. Dr. Zweitgutachter}
+\newcommand{\jahr}{2017}
+\newcommand{\ort}{Ort}
+\newcommand{\logo}{bilder/logo.png}
+
+\begin{document}
+
+% auch subsubsection nummerieren
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+% Deckblatt und Abstract ohne Seitenzahl
+\ofoot{}
+\include{einzelseiten/Deckblatt}
+
+\include{einzelseiten/Abstract}
+\ofoot{\pagemark}
+
+\pagenumbering{Roman}
+\tableofcontents            % Inhaltsverzeichnis
+
+\input{einzelseiten/Abkuerzungen}      % Abkürzungsverzeichnis
+%\clearpage\markboth{\nomname}{\nomname} % für korrekte Überschrift in der Kopfzeile
+%\printnomenclature
+
+
+\listoffigures              % Abbildungsverzeichnis
+\listoftables               % Tabellenverzeichnis
+
+%\renewcommand{\lstlistlistingname}{Quellcodeverzeichnis}
+%\lstlistoflistings          % Quellcodeverzeichnis
+
+\clearpage
+\pagenumbering{arabic}
+
+%\include{kapitel/1_Einleitung}
+\include{kapitel/01_Beispiele}
+%\include{kapitel/5_Hauptkapitel}
+%\include{kapitel/6_Schlussbetrachtung}
+
+\csappto{theglossary}{\label{cha:glossar}}
+\printglossaries
+
+\small
+\bibliographystyle{ieeetr}
+%\bibliographystyle{literatur/myalpha}
+\bibliography{literatur/Bibliographie}
+\normalsize
+
+\include{einzelseiten/Erklaerung}
+%\includepdf{einzelseiten/Pruefungsrechtliche_Erklaerung.pdf}
+
+\begin{appendix}
+    \clearpage
+    \pagenumbering{roman}       % Römisch mit kleinen Ziffern
+    \input{einzelseiten/Anhang}
+\end{appendix}
+
+\end{document}

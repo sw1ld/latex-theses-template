@@ -1,0 +1,204 @@
+\usepackage[
+    automark,       % Kapitelangaben in Kopfzeile automatisch erstellen
+    headsepline,    % Trennlinie unter Kopfzeile
+    footsepline,
+    ilines          % Trennlinie linksbündig ausrichten
+]{scrpage2}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{setspace}
+\onehalfspacing % Zeilenabstand 1,5 Zeilen
+
+\usepackage{geometry}
+\setlength{\topskip}{\ht\strutbox} % behebt Warnung von geometry
+\geometry{left=38mm,right=27mm,top=25mm,bottom=45mm}
+
+% Kopf- und Fußzeilen
+\pagestyle{scrheadings}
+% Kopf- und Fußzeile auch auf Kapitelanfangsseiten
+\renewcommand*{\chapterpagestyle}{scrheadings} 
+% Schriftform der Kopfzeile
+\renewcommand{\headfont}{\normalfont}
+
+% Kopfzeile
+%\ihead{\large{\textsc{\titel}} \\[2ex] \textit{\headmark}}
+\ihead{\large{} \\[2ex] \textit{\headmark}}
+\chead{}
+\ohead{\includegraphics[scale=0.4]{\logo} \hspace*{25mm}}   % optionales Logo der Universität
+
+\setlength{\headheight}{21mm} % Höhe der Kopfzeile
+% Kopfzeile über den Text hinaus verbreitern
+\setheadwidth[0pt]{textwithmarginpar} 
+\setheadsepline[text]{0.4pt} % Trennlinie unter Kopfzeile
+
+% Fußzeile
+\ifoot{\autor}
+\cfoot{}
+\ofoot{\pagemark}
+
+\usepackage{courier}
+\usepackage{relsize} 
+\usepackage[dvips,final]{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{longtable}
+\newlength\colw
+\usepackage[section]{placeins}
+
+\usepackage{seqsplit}       % breaks text at end of line
+\usepackage[hyphens]{url}   % breaks URLs
+
+\usepackage{eurosym}
+
+\usepackage{booktabs}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{rotating,tabularx}
+
+\usepackage{tablefootnote}
+
+\usepackage{hhline}
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}   % center
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} % left
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}  % right
+\newcolumntype{w}[1]{>{\raggedleft\hspace{0pt}}p{#1}}
+
+
+\usepackage{paralist} % Formatierung von Listen ändern
+\usepackage{todonotes}
+% usage: \todod{Adressat}{Frage}
+\newcommand{\mytodo}[2]{
+    \IfEqCase{#1}{
+        {Prof}{\todo[color=orange]{#1}{\textit{#2}}}
+        {cite}{\todo[color=blue]{#1}{}}
+        {newpage}{\todo[color=red]{#1}{}}
+        {}{\todo[color=green]{#1}{\textit{#2}}}
+    }[\PackageError{mytodo}{Undefined option to todod: #1}{}]
+}
+
+
+\usepackage[printonlyused]{acronym}
+
+\usepackage{chronology}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{numprint}
+\pgfplotsset{compat=1.14} 
+\usepackage{mathptmx}
+\usepackage{calc}
+\usepackage{xcolor} 
+
+\usepackage[toc]{glossaries}
+\loadglsentries{einzelseiten/Glossar}
+\makeglossaries
+\glsaddall{}
+
+\usepackage{pifont}
+\newcommand{\cmark}{\textcolor[rgb]{0,0.6,0}{\ding{51}}}
+\newcommand{\xmark}{\textcolor{red}{\ding{55}}}
+
+\newcommand*{\TakeFourierOrnament}[1]{{\fontencoding{U}\fontfamily{futs}\selectfont\char#1}}
+\newcommand*{\danger}{\textcolor[RGB]{255,200,0}{\TakeFourierOrnament{66}}}
+
+\frenchspacing % erzeugt ein wenig mehr Platz hinter einem Punkt
+
+
+\usepackage{pdfpages}
+
+% Schusterjungen und Hurenkinder vermeiden
+\clubpenalty = 10000
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
+
+\usepackage{floatflt}
+
+\usepackage{listings}
+\definecolor{colBackground}{RGB}{245, 245, 245}
+\definecolor{colKeys}{RGB}{0, 0, 255}
+\definecolor{colIdentifier}{RGB}{0, 0, 0}
+\definecolor{colComments}{RGB}{40, 220, 0}
+\definecolor{colString}{RGB}{0, 150, 0}
+\lstset{
+    float=hbp,
+    basicstyle=\ttfamily\color{black}\small\smaller,
+    identifierstyle=\color{colIdentifier},
+    keywordstyle=\color{colKeys},
+    stringstyle=\color{colString},
+    commentstyle=\color{colComments},
+    columns=flexible,
+    tabsize=2,
+    frame=single,
+    extendedchars=true,
+    showspaces=false,
+    showstringspaces=false,
+    numbers=left,
+    numberstyle=\tiny,
+    numbersep=5pt,
+    breaklines=true,
+    backgroundcolor=\color{colBackground},
+    emph={square}, 
+    emphstyle=\color{red}, 
+    emph={[2]root,base}, 
+    emphstyle={[2]\color{blue}},
+    breakautoindent=true
+}
+
+\lstdefinelanguage{json}{
+    %string=[s]{"}{"},
+    %stringstyle=\color{blue},
+    %comment=[l]{:},
+    %commentstyle=\color{black},
+}
+
+\usepackage[
+    bookmarks,
+    bookmarksopen=true,
+    colorlinks=true,
+    linkcolor=black,
+    anchorcolor=black,
+    citecolor=black,
+    filecolor=black,
+    menucolor=black,
+    urlcolor=black, 
+    %backref,
+    plainpages=false,
+    pdfpagelabels,
+    hypertexnames=false
+]{hyperref}
+
+
+% Abkürzungen mit korrektem Leerraum 
+\newcommand{\ua}{\mbox{u.\,a.\ }}
+\newcommand{\zB}{\mbox{z.\,B.\ }}
+\newcommand{\vgl}{vgl.\ }
+\newcommand{\bzw}{bzw.\ }
+\newcommand{\evtl}{evtl.\ }
+\newcommand{\ggf}{ggf.\ }
+\newcommand{\idR}{i.\,d.\,R.\ }
+
+\newcommand{\bs}{$\backslash$}
+\newcommand{\arrow}{$\to$}
+
+% Listenelement mit fetter Überschrift und Zeilenumbruch -> \itemd{Überschrift}
+\newcommand{\itemd}[1]{\item{\textbf{#1}}\\}
+
+\newcommand{\textcour}[1]{
+    \begin{footnotesize}
+        \texttt{#1} 
+    \end{footnotesize}
+}
+
+% Tabelleninhalte werden grundsätzlich in kleinerer Schriftgröße erstellt
+\usepackage{etoolbox}
+\AtBeginEnvironment{tabular}{\footnotesize}
+
+% Gantt Diagramm
+\usepackage{pgfgantt}
+\definecolor{textcol}{RGB}{48,48,48}
+\definecolor{completed1}{RGB}{127,127,127}
+\definecolor{completed2}{RGB}{217,217,217}
+\definecolor{todo1}{RGB}{13,110,161}
+\definecolor{todo2}{RGB}{21,171,253}
