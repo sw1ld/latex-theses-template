@@ -1,0 +1,12 @@
+main.pdf
+*.lot
+*.blg
+*.aux
+*.bbl
+*.glo
+*.ist
+*.log
+*.lof
+*.out
+*.toc
+*.gz
