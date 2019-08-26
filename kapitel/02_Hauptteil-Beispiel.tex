@@ -1,0 +1,149 @@
+\chapter{Hauptteil}
+\label{cha:haupteil}
+
+\section{Listen}
+\label{sec:listen}
+
+\textbf{Liste ohne Reihenfolge}
+\begin{itemize}
+    \item Alle Listenpunkte sind gleich
+    \item Die Reihenfolge kann leicht geändert werden
+    \item[\#] Explizit anderes Listenpunkt-Zeichen
+    \begin{itemize}[*]
+        \item Alle Listenpunkte haben ...
+        \item das Zeichen * anstelle eines Punktes
+        \item dieses Verhalten kann übrigens auch global in der config definiert werden.
+    \end{itemize}
+    \item Das ist der letzte Punkt
+\end{itemize}
+
+\textbf{Liste mit Reihenfolge}
+\begin{enumerate}
+    \item Erstes Argument - wichtigste Priorität
+    \item Deshalb spielt die Reihenfolge eine wichtige Rolle
+    \begin{enumerate}
+        \item Liste innerhalb einer Liste
+        \item Zweiter Unterpunkt
+        \begin{itemize}
+            \item[\textasciitilde] Punkt
+            \item[$\to$] Mathematischer Operator als Zusammenfassung
+        \end{itemize}
+    \end{enumerate}
+    \item Letzter Punkt
+\end{enumerate}
+
+
+\section{Tabellen}
+\label{sec:tabellen}
+
+\begin{table}[!htb]
+    \centering
+    \setlength{\colw}{0.15\textwidth-2\tabcolsep}    % 0.15 = Prozentsatz der Zellbreite für die Spalten
+
+    \begin{tabular}{L{0.39\textwidth-2\tabcolsep}||C{\colw}|C{\colw}|C{\colw}|C{\colw}}
+        & \textbf{A} & \textbf{B} & \textbf{C mit zwei Zeilen} & \textbf{D} \\
+        \hhline{=::====} Kriterium 1 &
+        \xmark & \cmark & \cmark & \cmark \\
+        \hline Kriterium 2 mit Beschreibung über zwei Zeilen & Sehr gut & Gut & Schlecht & Schlecht \\
+        \hline Kriterium 3 & Sehr gut & Gut & Schlecht & Schlecht \\
+        \hline Kriterium 4 & Hoch & Sehr hoch & Gering & Keiner \\
+    \end{tabular}
+    \caption{Tabellenbeschreibung}
+    \label{tab:tabellenbeschreibung}
+\end{table}
+
+
+\section{Abbildungen}
+\label{sec:abbildungen}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=.3\textwidth]{bilder/logo.png}
+    %\missingfigure{This is a missing figure}
+    \caption{Testabbildung}
+    \label{fig:testabbiludng}
+\end{figure}
+
+siehe abbildung \ref{fig:testabbiludng}
+
+\begin{figure}[htb]
+    \centering
+    \begin{tikzpicture}[domain=0:4]
+        \draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+        \draw[->] (-0.2,0) -- (4.2,0) node[right] {$x$};
+        \draw[->] (0,-1.2) -- (0,4.2) node[above] {$f(x)$};
+        \draw[color=red]    plot (\x,\x)             node[right] {$f(x) =x$};
+        \draw[color=blue]   plot (\x,{sin(\x r)})    node[right] {$f(x) = \sin x$};
+        \draw[color=orange] plot (\x,{0.05*exp(\x)}) node[right] {$f(x) = \frac{1}{20} \mathrm e^x$};
+    \end{tikzpicture}
+    \caption{Drawn picture}
+    \label{fig:test-tikz}
+\end{figure}
+
+
+
+\section{Zitieren und Referenzieren}
+\label{sec:zitieren-und-referenzieren}
+
+Hier ist ein \textit{schlechtes Beispiel} für die Referenzierung von Tabelle 3.1, Abbildung 4.2 und Überschrift 1.
+
+Dies ist ein \textbf{GUTES Beispiel} für die Referenzierung von Tabelle \ref{tab:tabellenbeschreibung}, Abbildung \ref{fig:testabbiludng} und Überschrift \ref{sec:einfuehrung}.
+
+Dies ist beschrieben in \cite{7516158}. Man kann auch mehrere Referenzen auf einmal angeben \cite{siriwardena_advanced_2014, levin_restful_2016}.
+
+\cite{7516158} hat die gleiche Referenz wie zuvor.
+
+Es können auch spezifische Seitenzahlen angegeben werden \cite[S. 17f.]{rfc:6838}.
+
+
+\section{Quellcode und Formeln}
+\label{sec:quellcode-und-formeln}
+
+\begin{equation}
+    \int_0^\infty e^{-x^2} dx=\frac{\sqrt{\pi}}{2}
+    \label{eq:test-formula}
+\end{equation}
+
+Dies ist eine einfache Art zur Erstellung von Formeln \textit{E=mc\textsuperscript{2}} weil es sich nicht um einen mathematischen Ausdruck handelt.
+
+\begin{lstlisting}[caption={Java Code Example}, captionpos=b, label={lst:example-java}, language=Java]
+// Hello.java
+import javax.swing.JApplet;
+import java.awt.Graphics;
+
+public class Hello extends JApplet {
+    public void paintComponent(Graphics g) {
+        g.drawString("Hello, world!", 65, 95);
+    }
+}
+\end{lstlisting}
+
+Damit das Quellcodeverzeichnis erstellt wird und im Inhaltsverzeichnis auftaucht, muss in der main.tex die entsprechenden Zeilen einkommentiert werden!
+
+
+\section{Acronyme und Glossar}
+\label{sec:acronym-und-glossar}
+
+Dies ist der \textit{falsche Weg} Acronyme zu verwenden:
+\begin{itemize}
+    \item Normal: Advanced Encryption Standard (AES)
+    \item Kurze Form: AES
+    \item Lange Form: Advanced Encryption
+    \item Volle Form: Advanced Encryption Standard (AES)
+    \item Plural: Advanced Encryption Sandards (AESs)
+\end{itemize}
+
+Dies ist der \textbf{richtige Weg} Acronyme zu verwenden:
+\begin{itemize}
+    \item Normal: \ac{AES}
+    \item Using an acroynm twice: \ac{AES}
+    \item Kurze Form: \acs{AES}
+    \item Lange Form: \acl{AES}
+    \item Volle Form: \acf{AES}
+    \item Plural: \acfp{AES} (Vorsicht bei der Verwendung im Deutschen! LaTeX hängt nur ein 's' an das Wort an)
+\end{itemize}
+
+Acronyme werden nur im Abkürzungsverzeichnis angezeigt, wenn sie mindestens einmal verwendet wurden.
+
+Ein Glossar ist eine Sammlung von detaillierten Beschreibungen in einem separaten Abschnitt der Arbeit. Glossareinträge können wie folgt verwendet werden: \gls{ReverseProxy}. \\
+In dieser Vorlage werden alle Einträge im Kapitel \ref{cha:glossar} unabhängig der Verwendung dargestellt. Dieses Verhalten kann selbstverständlich auch geändert werden.
